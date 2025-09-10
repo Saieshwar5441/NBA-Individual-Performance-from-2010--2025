@@ -12,10 +12,11 @@ Goal: Rate the 10 best, 10 most average, and 10 worst individual NBA player seas
 
 ## Dataset & Inputs
 
+- link: https://www.kaggle.com/datasets/eoinamoore/historical-nba-data-and-player-box-scores/data
 - This notebook expects game-level player box scores (e.g., PlayerStatistics.csv) with columns like:
 
 - Features: personId, firstName, lastName, gameId, gameDate, gameType, gameLabel, gameSubLabel, playerteamName, opponentteamName
-- Minutes: numMinutes (string-like MM.SS or MM:SS)\
+- Minutes: numMinutes (string-like MM.SS or MM:SS)
 - Box score: points, assists, reboundsTotal, steals, blocks, turnovers, fieldGoalsAttempted, fieldGoalsMade, freeThrowsAttempted, freeThrowsMade, threePointersAttempted, threePointersMade.
 
 ---

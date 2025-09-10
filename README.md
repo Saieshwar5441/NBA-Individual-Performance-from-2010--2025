@@ -1,11 +1,14 @@
-# NBA-Individual-Performance-from-2010--2025
+# NBA Individual Performance from 2010-2025
 
-**Goal:** Rate the 10 best, 10 most average, and 10 worst individual NBA player seasons (regular season only, ≥500 minutes, seasons 2010–11 onward) using only the provided dataset.
+Goal: Rate the 10 best, 10 most average, and 10 worst individual NBA player seasons (regular season only, ≥500 minutes, seasons 2010–11 onward) using only the provided dataset.
 
-##**Project Overview**
+---
 
-What it does: Cleans game logs, builds player–season aggregates, computes efficiency and per-minute rates, and produces three lists required by the prompt.
+## Project Overview
 
+- Cleans game logs, builds player–season aggregates, computes efficiency and per-minute rates, and produces three lists required by the prompt.
+
+---
 
 ##**Dataset & Inputs**
 

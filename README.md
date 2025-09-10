@@ -84,7 +84,7 @@ PER-like box composite: Interpretable approximation from positive box stats (PTS
 
 WS/48 (Win Shares per 48): impact rate derived from win contributions (if Win Shares are present; otherwise omitted).
 
-The notebook standardizes features within each season using z-scores (optionally winsorized at ±3σ) to keep comparisons fair across years and robust to outliers.
+The notebook standardizes features within each season using z-scores to keep comparisons fair across years and robust to outliers.
 
 ---
 

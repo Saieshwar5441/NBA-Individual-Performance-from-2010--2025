@@ -2,12 +2,12 @@
 
 **Goal:** Rate the 10 best, 10 most average, and 10 worst individual NBA player seasons (regular season only, ≥500 minutes, seasons 2010–11 onward) using only the provided dataset.
 
-**Project Overview**
+##**Project Overview**
 
 What it does: Cleans game logs, builds player–season aggregates, computes efficiency and per-minute rates, and produces three lists required by the prompt.
 
 
-**Dataset & Inputs**
+##**Dataset & Inputs**
 
 This notebook expects game-level player box scores (e.g., PlayerStatistics.csv) with columns like:
 
@@ -26,7 +26,7 @@ Seasons ≥ 2010–11.
 Player-season minutes ≥ 500 (after cleaning and conversion).
 
 
-**Preprocessing**
+##**Preprocessing**
 
 Filter games
 
@@ -54,7 +54,7 @@ Minutes gate
 Aggregate minutes per player-season and keep ≥ 500 total minutes (multi-team seasons aggregated).
 
 
-**Features & Metrics**
+##**Features & Metrics**
 
 For each qualified player-season:
 
@@ -81,7 +81,7 @@ WS/48 (Win Shares per 48): impact rate derived from win contributions (if Win Sh
 The notebook standardizes features within each season using z-scores (optionally winsorized at ±3σ) to keep comparisons fair across years and robust to outliers.
 
 
-**Composite Scoring System**
+##**Composite Scoring System**
 
 To produce a single interpretable ranking for player seasons, I combined multiple metrics into a composite score. Each metric was first normalized (using Min-Max scaling) so they were on the same scale, and then weighted based on its importance to evaluating overall player impact.
 

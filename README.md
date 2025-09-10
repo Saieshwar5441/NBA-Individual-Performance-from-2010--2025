@@ -29,13 +29,40 @@ Goal: Rate the 10 best, 10 most average, and 10 worst individual NBA player seas
 - Player-season minutes ≥ 500 (after cleaning and conversion).
 
 ---
+## Preprocessing
 
+- Filter games
 
-##**Features & Metrics**
+Keep gameType = regular season.
 
-For each qualified player-season:
+Remove All-Star Weekend rows by gameLabel/gameSubLabel patterns (All-Star, Rising Stars, Skills, 3-Point, Dunk).
 
-Shooting efficiency
+Keep In-Season Tournament (NBA Cup) games — they count toward the regular season.
+
+- Minutes cleanup
+
+Convert numMinutes from MM.SS or MM:SS → decimal minutes min_dec.
+Example: 30.46 → 30 + 46/60 = 30.7667.
+
+Drop data errors: rows with stats > 0 but minutes = 0/blank.
+
+DNPs (0 minutes, 0 stats) are not used for analysis.
+
+- Season labeling
+
+Create season string YYYY-YY (e.g., 2018-19) based on game date (season starts in October).
+
+- Minutes gate
+
+Aggregate minutes per player-season and keep ≥ 500 total minutes (multi-team seasons aggregated).
+
+---
+
+## Features & Metrics
+
+- For each qualified player-season:
+
+Shooting efficiency:
 
 True Shooting % (TS%) = PTS / [2 × (FGA + 0.44 × FTA)]
 
@@ -48,17 +75,19 @@ WS_proxy = (Offensive_Contribution + Defensive_Contribution) * 48 / min
 
 PER_Proxy = ​(PTS+REB+AST+2⋅STL+2⋅BLK−(FGA−FGM)−0.7⋅(FTA−FTM)−TOV) * 48 / min
 
+---
 
-Summary measures
+## Summary measures
 
-PER-like box composite: interpretable approximation from positive box stats (PTS, REB, AST, STL, BLK) minus missed shots & turnovers, scaled per minute (not the official Hollinger PER).
+PER-like box composite: Interpretable approximation from positive box stats (PTS, REB, AST, STL, BLK) minus missed shots & turnovers, scaled per minute (not the official Hollinger PER).
 
 WS/48 (Win Shares per 48): impact rate derived from win contributions (if Win Shares are present; otherwise omitted).
 
 The notebook standardizes features within each season using z-scores (optionally winsorized at ±3σ) to keep comparisons fair across years and robust to outliers.
 
+---
 
-##**Composite Scoring System**
+## Composite Scoring System
 
 To produce a single interpretable ranking for player seasons, I combined multiple metrics into a composite score. Each metric was first normalized (using Min-Max scaling) so they were on the same scale, and then weighted based on its importance to evaluating overall player impact.
 
@@ -79,3 +108,5 @@ The final composite score is a weighted sum of these normalized values:
 Composite Score = Sum ( Weights * Metric)
 
 This ensures that no single metric dominates the ranking and that the evaluation reflects a balance of efficiency, volume, and defensive impact.
+
+---

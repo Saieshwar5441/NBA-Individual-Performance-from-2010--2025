@@ -10,51 +10,25 @@ Goal: Rate the 10 best, 10 most average, and 10 worst individual NBA player seas
 
 ---
 
-##**Dataset & Inputs**
+## Dataset & Inputs
 
-This notebook expects game-level player box scores (e.g., PlayerStatistics.csv) with columns like:
+- This notebook expects game-level player box scores (e.g., PlayerStatistics.csv) with columns like:
 
-Features: personId, firstName, lastName, gameId, gameDate, gameType, gameLabel, gameSubLabel, playerteamName, opponentteamName
+- Features: personId, firstName, lastName, gameId, gameDate, gameType, gameLabel, gameSubLabel, playerteamName, opponentteamName
+- Minutes: numMinutes (string-like MM.SS or MM:SS)\
+- Box score: points, assists, reboundsTotal, steals, blocks, turnovers, fieldGoalsAttempted, fieldGoalsMade, freeThrowsAttempted, freeThrowsMade, threePointersAttempted, threePointersMade.
 
-Minutes: numMinutes (string-like MM.SS or MM:SS)
+---
 
-Box score: points, assists, reboundsTotal, steals, blocks, turnovers, fieldGoalsAttempted, fieldGoalsMade, freeThrowsAttempted, freeThrowsMade, threePointersAttempted, threePointersMade.
+## Scope 
 
-Scope enforced by the notebook
+- Regular season only (keeps In-Season Tournament games; excludes All-Star events).
 
-Regular season only (keeps In-Season Tournament games; excludes All-Star events).
+- Seasons ≥ 2010–11.
 
-Seasons ≥ 2010–11.
+- Player-season minutes ≥ 500 (after cleaning and conversion).
 
-Player-season minutes ≥ 500 (after cleaning and conversion).
-
-
-##**Preprocessing**
-
-Filter games
-
-Keep gameType = regular season.
-
-Remove All-Star Weekend rows by gameLabel/gameSubLabel patterns (All-Star, Rising Stars, Skills, 3-Point, Dunk).
-
-Keep In-Season Tournament (NBA Cup) games — they count toward the regular season.
-
-Minutes cleanup
-
-Convert numMinutes from MM.SS or MM:SS → decimal minutes min_dec.
-Example: 30.46 → 30 + 46/60 = 30.7667.
-
-Drop data errors: rows with stats > 0 but minutes = 0/blank.
-
-DNPs (0 minutes, 0 stats) are not used for analysis.
-
-Season labeling
-
-Create season string YYYY-YY (e.g., 2018-19) based on game date (season starts in October).
-
-Minutes gate
-
-Aggregate minutes per player-season and keep ≥ 500 total minutes (multi-team seasons aggregated).
+---
 
 
 ##**Features & Metrics**
